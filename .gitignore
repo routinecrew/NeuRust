@@ -1,6 +1,9 @@
 # Build
 /target/
 
+# Claude Code
+CLAUDE.md
+
 # Skills (agent instructions)
 skills/
 

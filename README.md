@@ -289,7 +289,7 @@ observability:
 
 ## Roadmap
 
-- [x] **Phase 0** — Workspace scaffold, shared contracts, agent setup
+- [x] **Phase 0** — Workspace scaffold, shared contracts
 - [ ] **Phase 1** — Core Proxy: Pipeline + OpenAI/Anthropic providers + Gateway
 - [ ] **Phase 2** — Intelligence: TieredCache + Cost Router + Bandit
 - [ ] **Phase 3** — Security: PII Masking + Prompt Guard
@@ -316,17 +316,7 @@ observability:
 
 ## Contributing
 
-NeuRust는 **5-agent parallel development** 방식으로 개발됩니다.
-
-각 에이전트는 독립된 영역을 담당하며, `contracts/shared_types.rs`의 공유 계약을 통해 연결됩니다.
-
-| Agent | Area | Branch |
-|-------|------|--------|
-| A | Core (Config, Pipeline, Provider) | `agent-a/core` |
-| B | Gateway (HTTP, API, SSE) | `agent-b/gateway` |
-| C | Cache & Cost Router | `agent-c/intel` |
-| D | Security (PII, Prompt Guard) | `agent-d/security` |
-| E | Observability & Store | `agent-e/observe` |
+Contributions are welcome! Please feel free to submit issues and pull requests.
 
 ```bash
 # Build
