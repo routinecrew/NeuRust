@@ -1,0 +1,25 @@
+[package]
+name = "neurust-core"
+version = "0.1.0"
+edition = "2021"
+description = "NeuRust core: config, pipeline, provider, auth"
+
+[dependencies]
+tokio = { workspace = true }
+bytes = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+serde_yaml = { workspace = true }
+async-trait = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+futures-core = { workspace = true }
+reqwest = { workspace = true }
+notify = "7"
+governor = "0.8"
+jsonwebtoken = "9"
+
+[dev-dependencies]
+tokio = { workspace = true, features = ["test-util"] }
+async-stream = { workspace = true }

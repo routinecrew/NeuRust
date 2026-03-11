@@ -1,0 +1,9 @@
+# Build
+/target/
+
+# Skills (agent instructions)
+skills/
+
+# Design documents
+NeuRust_System_Design.md
+PARALLEL_DEV_GUIDE.md

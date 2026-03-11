@@ -1,0 +1,78 @@
+# NeuRust 기본 설정 (Zero-Config: 최소 providers만 설정하면 동작)
+
+server:
+  address: "0.0.0.0:8080"
+  graceful_shutdown_sec: 30
+  max_stream_buffer_tokens: 128000
+
+providers:
+  - id: openai
+    provider_type: openai
+    api_key_env: OPENAI_API_KEY
+    models: ["gpt-4o", "gpt-4o-mini", "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano"]
+    priority: 1
+    max_connections: 100
+
+  - id: anthropic
+    provider_type: anthropic
+    api_key_env: ANTHROPIC_API_KEY
+    models: ["claude-opus-4-6", "claude-sonnet-4-20250514", "claude-haiku-4-5-20251001"]
+    priority: 2
+    max_connections: 100
+
+# --- 이하 선택 사항 (Zero-Config: 생략 시 비활성화) ---
+
+auth:
+  api_keys:
+    - key: "sk-neurust-dev-key-001"
+      name: "dev-local"
+      rate_limit: 100
+
+intelligence:
+  tiered_cache:
+    exact_cache:
+      enabled: true
+      max_entries: 100000
+      ttl_sec: 3600
+      warming:
+        enabled: true
+        dump_path: "./cache_dump.bin"
+        dump_interval_sec: 300
+        max_warm_entries: 10000
+    semantic_cache:
+      enabled: false
+      similarity_threshold: 0.92
+      eviction: lfu
+      multiturn_strategy: last_message_with_turn_count
+
+  cost_router:
+    enabled: false
+    warmup_requests: 100
+    epsilon: 0.1
+    normalize_mode: safe
+    bandit_algorithm: sliding_window_ucb
+    sliding_window_size: 500
+    context_weights:
+      interactive: { cost: 0.2, latency: 0.6, quality: 0.2 }
+      batch:       { cost: 0.7, latency: 0.1, quality: 0.2 }
+
+security:
+  pii_masking:
+    enabled: false
+    detection_level: balanced
+    direction: bidirectional
+    min_window_tokens: auto
+  prompt_guard:
+    input_scanning: true
+    role_boundary: true
+    output_validation: true
+    output_overlap_mode: ratio
+    output_overlap_threshold: 0.3
+
+observability:
+  store:
+    store_type: auto
+  cost_forecaster:
+    enabled: true
+    confidence_interval: 0.85
+    forecast_horizon_days: 30

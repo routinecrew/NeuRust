@@ -1,0 +1,56 @@
+[package]
+name = "neurust"
+version = "0.1.0"
+edition = "2021"
+description = "The Intelligent Rust Gateway for Nano-second AI Routing"
+
+[[bin]]
+name = "neurust"
+path = "src/main.rs"
+
+[features]
+default = []
+full = ["neurust-intel/full"]
+cache-semantic = ["neurust-intel/cache-semantic"]
+security = ["neurust-intel/security"]
+cost-router = ["neurust-intel/cost-router"]
+
+[dependencies]
+neurust-core = { path = "crates/neurust-core" }
+neurust-gateway = { path = "crates/neurust-gateway" }
+neurust-intel = { path = "crates/neurust-intel" }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+
+[workspace]
+members = [
+    "crates/neurust-core",
+    "crates/neurust-gateway",
+    "crates/neurust-intel",
+]
+resolver = "2"
+
+[workspace.dependencies]
+tokio = { version = "1", features = ["full"] }
+bytes = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+serde_yaml = "0.9"
+async-trait = "0.1"
+anyhow = "1"
+thiserror = "2"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+axum = { version = "0.7", features = ["macros"] }
+axum-extra = { version = "0.9", features = ["typed-header"] }
+tower = { version = "0.5", features = ["util"] }
+tower-http = { version = "0.6", features = ["cors", "trace"] }
+reqwest = { version = "0.12", features = ["json"] }
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1", features = ["v4", "serde"] }
+dashmap = "6"
+xxhash-rust = { version = "0.8", features = ["xxh64"] }
+futures-core = "0.3"
+async-stream = "0.3"

@@ -1,0 +1,63 @@
+[package]
+name = "neurust-intel"
+version = "0.1.0"
+edition = "2021"
+description = "NeuRust intelligence: cache, cost router, security, observability, store"
+
+[features]
+default = ["cache-exact", "observability"]
+
+# 캐싱
+cache-exact = []
+cache-semantic = [
+    "dep:fastembed",
+    "dep:simsimd",
+]
+
+# 보안
+security = ["dep:aho-corasick"]
+security-ner = ["security", "dep:ort"]
+
+# 비용 라우터
+cost-router = []
+
+# 관측
+observability = []
+
+# 저장소
+store-sqlite = ["dep:rusqlite"]
+store-postgres = ["dep:sqlx"]
+
+# 전체
+full = [
+    "cache-exact", "cache-semantic",
+    "security", "cost-router",
+    "observability",
+    "store-sqlite", "store-postgres"
+]
+
+[dependencies]
+neurust-core = { path = "../neurust-core" }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+async-trait = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+futures-core = { workspace = true }
+dashmap = { workspace = true }
+xxhash-rust = { workspace = true }
+chrono = { workspace = true }
+
+# 선택적 의존성
+fastembed = { version = "4", optional = true }
+simsimd = { version = "6", optional = true }
+aho-corasick = { version = "1", optional = true }
+ort = { version = "=2.0.0-rc.5", optional = true }
+rusqlite = { version = "0.31", optional = true, features = ["bundled"] }
+sqlx = { version = "0.8", optional = true, features = ["postgres", "runtime-tokio-native-tls"] }
+bincode = "1"
+
+[dev-dependencies]
+tokio = { workspace = true, features = ["test-util"] }
+async-stream = { workspace = true }

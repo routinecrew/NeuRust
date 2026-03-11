@@ -1,0 +1,53 @@
+{
+  "models": {
+    "gpt-4o": {
+      "provider": "openai",
+      "input_per_1m_tokens": 2.50,
+      "output_per_1m_tokens": 10.00,
+      "context_window": 128000
+    },
+    "gpt-4o-mini": {
+      "provider": "openai",
+      "input_per_1m_tokens": 0.15,
+      "output_per_1m_tokens": 0.60,
+      "context_window": 128000
+    },
+    "gpt-4.1": {
+      "provider": "openai",
+      "input_per_1m_tokens": 2.00,
+      "output_per_1m_tokens": 8.00,
+      "context_window": 1047576
+    },
+    "gpt-4.1-mini": {
+      "provider": "openai",
+      "input_per_1m_tokens": 0.40,
+      "output_per_1m_tokens": 1.60,
+      "context_window": 1047576
+    },
+    "gpt-4.1-nano": {
+      "provider": "openai",
+      "input_per_1m_tokens": 0.10,
+      "output_per_1m_tokens": 0.40,
+      "context_window": 1047576
+    },
+    "claude-opus-4-6": {
+      "provider": "anthropic",
+      "input_per_1m_tokens": 15.00,
+      "output_per_1m_tokens": 75.00,
+      "context_window": 200000
+    },
+    "claude-sonnet-4-20250514": {
+      "provider": "anthropic",
+      "input_per_1m_tokens": 3.00,
+      "output_per_1m_tokens": 15.00,
+      "context_window": 200000
+    },
+    "claude-haiku-4-5-20251001": {
+      "provider": "anthropic",
+      "input_per_1m_tokens": 0.80,
+      "output_per_1m_tokens": 4.00,
+      "context_window": 200000
+    }
+  },
+  "last_updated": "2026-03-11"
+}
