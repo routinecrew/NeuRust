@@ -38,15 +38,16 @@ jobs:
       - run: cargo test --workspace --features ${{ matrix.features }}
 
   # Stage 3: 벤치마크 (main 브랜치만)
-  benchmark:
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    needs: test-unit
-    steps:
-      - uses: actions/checkout@v4
-      - uses: dtolnay/rust-toolchain@stable
-      - run: cargo bench --bench pipeline_bench -- --output-format bencher
-      - run: cargo bench --bench exact_cache_bench -- --output-format bencher
+  # TODO: Re-enable when benchmark targets (pipeline_bench, exact_cache_bench) are created
+  # benchmark:
+  #   if: github.ref == 'refs/heads/main'
+  #   runs-on: ubuntu-latest
+  #   needs: test-unit
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: dtolnay/rust-toolchain@stable
+  #     - run: cargo bench --bench pipeline_bench -- --output-format bencher
+  #     - run: cargo bench --bench exact_cache_bench -- --output-format bencher
 
   # Stage 4: Docker 이미지 빌드 (main 머지 시)
   docker:

@@ -20,6 +20,11 @@ notify = "7"
 governor = "0.8"
 jsonwebtoken = "9"
 
+async-stream = { workspace = true }
+uuid = { workspace = true }
+tokio-util = { version = "0.7", features = ["io"] }
+tokio-stream = "0.1"
+subtle = { workspace = true }
+
 [dev-dependencies]
 tokio = { workspace = true, features = ["test-util"] }
-async-stream = { workspace = true }

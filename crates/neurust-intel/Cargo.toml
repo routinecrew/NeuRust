@@ -16,7 +16,7 @@ cache-semantic = [
 
 # 보안
 security = ["dep:aho-corasick"]
-security-ner = ["security", "dep:ort"]
+security-ner = ["security"]
 
 # 비용 라우터
 cost-router = []
@@ -50,10 +50,9 @@ xxhash-rust = { workspace = true }
 chrono = { workspace = true }
 
 # 선택적 의존성
-fastembed = { version = "4", optional = true }
+fastembed = { version = "5", optional = true }
 simsimd = { version = "6", optional = true }
 aho-corasick = { version = "1", optional = true }
-ort = { version = "=2.0.0-rc.5", optional = true }
 rusqlite = { version = "0.31", optional = true, features = ["bundled"] }
 sqlx = { version = "0.8", optional = true, features = ["postgres", "runtime-tokio-native-tls"] }
 bincode = "1"
@@ -61,3 +60,16 @@ bincode = "1"
 [dev-dependencies]
 tokio = { workspace = true, features = ["test-util"] }
 async-stream = { workspace = true }
+criterion = { version = "0.5", features = ["html_reports", "async_tokio"] }
+
+[[bench]]
+name = "cache_bench"
+harness = false
+
+[[bench]]
+name = "router_bench"
+harness = false
+
+[[bench]]
+name = "security_bench"
+harness = false

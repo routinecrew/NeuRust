@@ -24,7 +24,7 @@ providers:
 
 auth:
   api_keys:
-    - key: "sk-neurust-dev-key-001"
+    - key: "sk-your-api-key-here"
       name: "dev-local"
       rate_limit: 100
 
